@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Convertidor de Coordenadas</title>
-<link rel="stylesheet" href="src/styles.css?v=15" />
+<link rel="stylesheet" href="src/styles.css?v=16" />
 <style>
 .map{cursor:grab!important}.map.grabbing{cursor:grabbing!important}.tile,.labeltile{pointer-events:none;user-select:none}.labeltile{z-index:2}.mapinfo,.zoom,.credit{z-index:5}.marker{z-index:4}.btn.out{background:white;color:#0f172a;border:1px solid #cbd5e1}
 </style>
@@ -21,10 +21,10 @@
 <section class="card pad"><h2>Captura / imagen / tabla</h2><label class="drop">Subir imagen y reconocer coordenadas<input type="file" accept="image/*" hidden onchange="ocrImage(this.files[0])"></label><br><textarea id="textCoords" placeholder="Pega texto o tabla con varias coordenadas. Ejemplo: 12.15468°N, -86.27372°O"></textarea><br><br><button class="btn" onclick="extractText()">Extraer coordenadas</button></section>
 <section class="card pad full"><div class="mapbar"><h2>Mapa</h2><div class="btns"><select id="base" onchange="drawMap()"><option value="osm">OSM con etiquetas</option><option value="carto">Claro con etiquetas</option><option value="topo">Topográfico</option><option value="sat">Satelital + etiquetas</option></select><input id="search" placeholder="Buscar" oninput="renderTable()"></div></div><div id="map" class="map" onmousedown="mapDown(event)" onmousemove="mapMove(event)" onmouseup="mapUp(event)" onmouseleave="mapUp(event)"></div></section>
 <section class="card pad full"><div class="export"><div><h2>Exportar coordenadas</h2><p class="muted">CSV compatible con Excel y QGIS.</p></div><button class="btn green" onclick="exportCsv(true)">Exportar filtrado CSV</button></div><h2>Tabla editable</h2><div class="tablewrap"><table><thead><tr><th>Nombre</th><th>Lat</th><th>Lon</th><th>Este</th><th>Norte</th><th>Zona</th><th>Hem</th><th>Notas</th><th></th></tr></thead><tbody id="tbody"></tbody></table></div></section></main></div></div></div>
-<script src="app.js?v=15"></script>
-<script src="app-enhance.js?v=15"></script>
-<script src="app-ui.js?v=5"></script>
-<script src="app-final-ui.js?v=3"></script>
-<script src="app-precision.js?v=2"></script>
+<script src="app.js?v=16"></script>
+<script src="app-enhance.js?v=16"></script>
+<script src="app-ui.js?v=6"></script>
+<script src="app-final-ui.js?v=4"></script>
+<script src="app-precision.js?v=3"></script>
 </body>
 </html>

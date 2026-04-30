@@ -18,13 +18,6 @@ Aplicación web para convertir coordenadas geográficas ↔ UTM, trabajar por pr
 - Exportación CSV compatible con Excel, QGIS y Google Earth.
 
 ## Privacidad
-
-La aplicación no usa servidor ni base de datos. Cada usuario guarda sus proyectos localmente en su propio navegador usando `localStorage`.
-
-Eso significa que:
-
-- Los datos de una persona no los ve otra persona.
-- No hay cuentas ni contraseñas.
 - Cada usuario descarga su propio CSV.
 
 ## Uso local

@@ -29,7 +29,13 @@
     msg('Punto deseleccionado.');
   };
 
-  function pointNo(p){ return pr().points.findIndex(x => x.id === p.id) + 1; }
+  // La app guarda los puntos nuevos al inicio del arreglo. Para que N° represente el orden real de captura,
+  // se calcula de forma inversa: el primer punto capturado conserva N° 1, el segundo N° 2, etc.
+  function pointNo(p){
+    const points = pr().points;
+    const idx = points.findIndex(x => x.id === p.id);
+    return idx >= 0 ? points.length - idx : '';
+  }
   function labelFor(p,i){
     const field = $('labelField')?.value || 'numero';
     if(field === 'none') return '';

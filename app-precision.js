@@ -1,4 +1,4 @@
-// Corrección de precisión de captura y cursor especial para modo captura.
+// Corrección de precisión de captura, cursor especial y nombre al capturar punto.
 (function(){
   let precisionCaptureMode = false;
   let precisionDrag = null;
@@ -32,6 +32,18 @@
     return {lat:latFrom(wy,view.z), lon:lonFrom(wx,view.z)};
   }
 
+  function nextPointNumber(){
+    return (pr()?.points?.length || 0) + 1;
+  }
+
+  function askPointName(){
+    const defaultName = 'Punto ' + nextPointNumber();
+    const name = prompt('Nombre del punto capturado:', defaultName);
+    if(name === null) return null;
+    const clean = String(name).trim();
+    return clean || defaultName;
+  }
+
   function addPointNoMove(point){
     const p=pr();
     p.points.unshift({id:crypto.randomUUID?crypto.randomUUID():String(Date.now()+Math.random()),name:point.name||'Punto '+(p.points.length+1),...point});
@@ -58,7 +70,7 @@
   window.toggleCaptureMode=function(){
     precisionCaptureMode=!precisionCaptureMode;
     updateCaptureButton();
-    msg(precisionCaptureMode?'Modo captura activo: usa la cruz/cursor para marcar el punto exacto.':'Modo navegación activo: puedes mover, buscar y hacer zoom sin capturar puntos.');
+    msg(precisionCaptureMode?'Modo captura activo: haz clic, escribe el nombre del punto y se guardará sin mover la vista.':'Modo navegación activo: puedes mover, buscar y hacer zoom sin capturar puntos.');
   };
 
   window.mapWheel=function(e){
@@ -109,9 +121,11 @@
     if(moved)return;
     if(!precisionCaptureMode){msg('Modo navegación activo. Activa “Capturar punto” para guardar coordenadas desde el mapa.');return;}
     const {lat,lon}=eventToLatLon(e);
+    const pointName = askPointName();
+    if(pointName === null){msg('Captura cancelada. El modo captura sigue activo.');return;}
     try{
-      addPointNoMove({name:'Mapa',lat,lon,...ll2utm(lat,lon),source:'Mapa',notes:'Capturada en mapa'});
-      msg('Coordenada capturada con precisión: '+lat.toFixed(7)+', '+lon.toFixed(7)+'. Captura sigue activa.');
+      addPointNoMove({name:pointName,lat,lon,...ll2utm(lat,lon),source:'Mapa',notes:'Capturada en mapa'});
+      msg('Punto "'+pointName+'" capturado: '+lat.toFixed(7)+', '+lon.toFixed(7)+'. Captura sigue activa.');
     }catch(err){msg(err.message||'No se pudo capturar la coordenada.');}
   };
 
@@ -124,7 +138,7 @@
       if(precisionCaptureMode && !map.querySelector('.capture-hint')){
         const h=document.createElement('div');
         h.className='capture-hint';
-        h.textContent='Captura activa: clic para guardar punto';
+        h.textContent='Captura activa: clic, nombre y guardar';
         map.appendChild(h);
       }
     }

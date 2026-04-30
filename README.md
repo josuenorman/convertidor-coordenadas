@@ -26,12 +26,7 @@ Aplicación web para convertir coordenadas geográficas ↔ UTM, trabajar por pr
 npm install
 npm run dev
 ```
-
-## Publicación
-
-Este repositorio está preparado para publicarse con GitHub Pages mediante GitHub Actions.
-
-La URL pública esperada será:
+##La URL es:
 
 ```text
 https://josuenorman.github.io/convertidor-coordenadas/

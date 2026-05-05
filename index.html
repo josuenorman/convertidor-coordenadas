@@ -6,20 +6,128 @@
 <title>Utilidades SIG Web v1.20</title>
 <link rel="stylesheet" href="src/styles.css?v=25" />
 <style>
-body,.app,input,select,textarea,button,table{font-family:"Century Gothic","Aptos","Segoe UI",Arial,sans-serif!important}.map{cursor:grab!important}.map.grabbing{cursor:grabbing!important}.tile,.labeltile{pointer-events:none;user-select:none}.labeltile{z-index:2}.mapinfo,.zoom,.credit{z-index:5}.marker{z-index:4}.btn.out{background:white;color:#0f172a;border:1px solid #cbd5e1}.hero-title h1{text-align:center}.byline{font-size:12px;font-weight:500;margin-left:8px;color:#111827;vertical-align:middle}
+body,.app,input,select,textarea,button,table{font-family:"Century Gothic","Aptos","Segoe UI",Arial,sans-serif!important}
+.map{cursor:grab!important}.map.grabbing{cursor:grabbing!important}
+.tile,.labeltile{pointer-events:none;user-select:none}
+.labeltile{z-index:2}.mapinfo,.zoom,.credit{z-index:5}.marker{z-index:4}
+.btn.out{background:white;color:#0f172a;border:1px solid #cbd5e1}
+.hero-title{text-align:center;width:100%}
+.hero-title h1{text-align:center;margin:0 auto}
+.byline{font-size:12px;font-weight:500;margin-left:8px;color:#475569;vertical-align:middle}
 </style>
 </head>
 <body>
 <div class="app"><div class="wrap">
+
 <header class="hero hero-workspace">
-  <div class="hero-title"><h1>Utilidades SIG Web <span class="byline">by Norman García</span></h1><p>Versión 1.20 · Se restauró la distribución estable anterior, manteniendo el nuevo nombre de la aplicación.</p></div>
-  <div class="hero-projects"><div class="project-header-row"><strong>Proyectos</strong><span id="msg" class="status hero-status">Listo para trabajar.</span></div><div id="projects" class="projects-inline"></div></div>
-  <div class="btns hero-actions"><button class="btn white" onclick="newProject()">Nuevo proyecto</button><button class="btn green" onclick="exportCsv(false)">CSV</button></div>
+  <!-- Título centrado -->
+  <div class="hero-title">
+    <h1>Utilidades SIG Web <span class="byline">by Norman García</span></h1>
+  </div>
+
+  <!-- Proyectos y acciones en una sola barra -->
+  <div class="hero-projects">
+    <div class="project-header-row">
+      <strong>Proyectos</strong>
+      <span id="msg" class="status hero-status">Listo para trabajar.</span>
+      <div class="btns hero-actions" style="display:inline-flex;gap:6px;margin-left:10px;">
+        <button class="btn white" onclick="newProject()">Nuevo proyecto</button>
+        <button class="btn green" onclick="exportCsv(false)">CSV</button>
+      </div>
+    </div>
+    <div id="projects" class="projects-inline"></div>
+  </div>
 </header>
+
 <div class="grid workspace-grid">
-<main class="main"><section class="card pad"><div class="tabs"><h2>Ingreso manual</h2><select id="mode" onchange="renderForm()"><option value="geo">Geográficas a UTM</option><option value="utm">UTM a Geográficas</option></select></div><input id="name" placeholder="Nombre del punto"><br><br><div id="coordForm"></div><br><textarea id="notes" placeholder="Notas"></textarea><br><br><button class="btn" onclick="addManual()">Agregar coordenada</button></section>
-<section class="card pad full"><div class="mapbar"><h2>Mapa</h2><div class="btns"><select id="base" onchange="drawMap()"><option value="osm">OSM con etiquetas</option><option value="carto">Claro con etiquetas</option><option value="topo">Topográfico</option><option value="sat">Satelital + etiquetas</option></select><input id="search" placeholder="Buscar" oninput="renderTable()"></div></div><div id="map" class="map" onmousedown="mapDown(event)" onmousemove="mapMove(event)" onmouseup="mapUp(event)" onmouseleave="mapUp(event)"></div></section>
-<section class="card pad full"><div class="export"><div><h2>Exportar coordenadas</h2><p class="muted">CSV compatible con Excel y QGIS.</p></div><button class="btn green" onclick="exportCsv(true)">Exportar filtrado CSV</button></div><h2>Tabla editable</h2><div class="tablewrap"><table><thead><tr><th>Nombre</th><th>Lat</th><th>Lon</th><th>Este</th><th>Norte</th><th>Zona</th><th>Hem</th><th>Notas</th><th></th></tr></thead><tbody id="tbody"></tbody></table></div></section></main></div></div></div>
+<main class="main">
+
+  <!-- Ingreso manual (módulo base, será reemplazado por app-modules-v119.js) -->
+  <section class="card pad">
+    <div class="tabs">
+      <h2>Ingreso manual</h2>
+      <select id="mode" onchange="renderForm()">
+        <option value="geo">Geográficas a UTM</option>
+        <option value="utm">UTM a Geográficas</option>
+      </select>
+    </div>
+    <input id="name" placeholder="Nombre del punto"><br><br>
+    <div id="coordForm"></div><br>
+    <textarea id="notes" placeholder="Notas"></textarea><br><br>
+    <button class="btn" onclick="addManual()">Agregar coordenada</button>
+  </section>
+
+  <!-- Mapa -->
+  <section class="card pad full">
+    <div class="mapbar">
+      <h2>Mapa</h2>
+      <div class="btns">
+        <select id="base" onchange="drawMap()">
+          <option value="osm">OSM con etiquetas</option>
+          <option value="carto">Claro con etiquetas</option>
+          <option value="topo">Topográfico</option>
+          <option value="sat">Satelital + etiquetas</option>
+        </select>
+        <input id="search" placeholder="Buscar" oninput="renderTable()">
+      </div>
+    </div>
+    <div id="map" class="map"
+      onmousedown="mapDown(event)"
+      onmousemove="mapMove(event)"
+      onmouseup="mapUp(event)"
+      onmouseleave="mapUp(event)">
+    </div>
+  </section>
+
+  <!-- Tabla y exportación -->
+  <section class="card pad full">
+    <div class="export">
+      <div>
+        <h2>Exportar coordenadas</h2>
+        <p class="muted">CSV compatible con Excel y QGIS.</p>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+        <button class="btn green" onclick="exportCsv(true)">Exportar filtrado CSV</button>
+        <button class="btn" id="btnLimpiarTabla" onclick="limpiarTablaCompleta()" style="background:#dc2626!important;color:#fff;border:none;">🗑 Limpiar tabla</button>
+      </div>
+    </div>
+    <h2>Tabla editable</h2>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre</th><th>Lat</th><th>Lon</th>
+            <th>Este</th><th>Norte</th><th>Zona</th>
+            <th>Hem</th><th>Notas</th><th></th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+</div>
+</div></div>
+
+<script>
+function limpiarTablaCompleta(){
+  var total = (typeof pts !== 'undefined' ? pts.length : document.querySelectorAll('#tbody tr').length);
+  if(total === 0){ alert('La tabla ya está vacía.'); return; }
+  var ok = confirm('¿Eliminar todos los ' + total + ' registros de la tabla?\nEsta acción no se puede deshacer.');
+  if(!ok) return;
+  if(typeof pts !== 'undefined') pts.length = 0;
+  if(typeof points !== 'undefined') points.length = 0;
+  var tbody = document.getElementById('tbody');
+  if(tbody) tbody.innerHTML = '';
+  if(typeof clearMarkers === 'function') clearMarkers();
+  if(typeof drawMap === 'function') drawMap();
+  var msgEl = document.getElementById('msg');
+  if(msgEl) msgEl.textContent = 'Tabla limpiada.';
+  if(typeof saveProject === 'function') saveProject();
+  if(typeof renderTable === 'function') renderTable();
+}
+</script>
 <script src="app.js?v=25"></script>
 <script src="app-enhance.js?v=25"></script>
 <script src="app-ui.js?v=15"></script>
@@ -28,5 +136,7 @@ body,.app,input,select,textarea,button,table{font-family:"Century Gothic","Aptos
 <script src="app-clean-header.js?v=9"></script>
 <script src="app-import-export.js?v=8"></script>
 <script src="app-layout-v115.js?v=6"></script>
+<script src="app-modules-v119.js?v=20"></script>
 </body>
 </html>
+

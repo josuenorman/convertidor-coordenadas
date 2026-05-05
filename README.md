@@ -21,26 +21,35 @@ La herramienta permite convertir, capturar, importar, plotear, editar y exportar
 
 ## Versión actual
 
-**v1.15**
+**v1.16**
 
 Cambios principales:
 
-- Nombre actualizado a **Utilidades SIG web**.
-- Se eliminó la sección OCR/imagen para reducir redundancia.
-- Se incorporó módulo SIG para importar CSV, Excel y Shapefile.
-- Se optimizó la distribución visual para priorizar módulo SIG, mapa y tabla.
-- Se simplificó la exportación a CSV y GeoJSON.
+- Rediseño visual tipo tablero SIG profesional.
+- Paleta de colores más sobria e institucional.
+- Mejor distribución de módulos para reducir espacios vacíos.
+- Módulo de carga/exportación SIG organizado en la parte superior.
+- Tabla editable y mapa como áreas principales de trabajo.
+- Encabezado más limpio y compacto.
 
 ## Privacidad
 
 La aplicación no usa base de datos ni servidor propio. Los proyectos y puntos se guardan localmente en el navegador de cada usuario.
 
-## Enlace público
+## Enlace público actual
 
 ```text
 https://josuenorman.github.io/convertidor-coordenadas/
 ```
 
+## Enlace público futuro
+
+Si se renombra el repositorio a `utilidades-sig-web`, el enlace podrá quedar como:
+
+```text
+https://josuenorman.github.io/utilidades-sig-web/
+```
+
 ## Nota
 
-El nombre del repositorio se mantiene como `convertidor-coordenadas` para no romper el enlace público existente. La aplicación visible y la documentación ya usan el nuevo nombre: **Utilidades SIG web**.
+El nombre visible de la aplicación y la documentación es **Utilidades SIG web**. El repositorio aún puede conservar el nombre `convertidor-coordenadas` para no romper el enlace público existente, o renombrarse posteriormente si se desea compartir una URL nueva.

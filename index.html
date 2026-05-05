@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Utilidades SIG Web v1.17</title>
-<link rel="stylesheet" href="src/styles.css?v=22" />
+<title>Utilidades SIG Web v1.18</title>
+<link rel="stylesheet" href="src/styles.css?v=23" />
 <style>
 body,.app,input,select,textarea,button,table{font-family:"Century Gothic","Aptos","Segoe UI",Arial,sans-serif!important}.map{cursor:grab!important}.map.grabbing{cursor:grabbing!important}.tile,.labeltile{pointer-events:none;user-select:none}.labeltile{z-index:2}.mapinfo,.zoom,.credit{z-index:5}.marker{z-index:4}.btn.out{background:white;color:#0f172a;border:1px solid #cbd5e1}
 </style>
@@ -12,7 +12,7 @@ body,.app,input,select,textarea,button,table{font-family:"Century Gothic","Aptos
 <body>
 <div class="app"><div class="wrap">
 <header class="hero hero-workspace">
-  <div class="hero-title"><h1>Utilidades SIG Web <span class="byline">by Norman García</span></h1><p>Herramientas web para convertir coordenadas, importar tablas y Shapefiles, editar datos, visualizar en mapa y exportar para QGIS.</p></div>
+  <div class="hero-title"><h1>Utilidades SIG Web <span class="byline">by Norman García</span></h1><p></p></div>
   <div class="hero-projects"><div class="project-header-row"><strong>Proyectos</strong><span id="msg" class="status hero-status">Listo para trabajar.</span></div><div id="projects" class="projects-inline"></div></div>
   <div class="btns hero-actions"><button class="btn white" onclick="newProject()">Nuevo proyecto</button><button class="btn green" onclick="exportCsv(false)">CSV</button></div>
 </header>
@@ -20,15 +20,16 @@ body,.app,input,select,textarea,button,table{font-family:"Century Gothic","Aptos
 <main class="main"><section class="card pad"><div class="tabs"><h2>Ingreso manual</h2><select id="mode" onchange="renderForm()"><option value="geo">Geográficas a UTM</option><option value="utm">UTM a Geográficas</option></select></div><input id="name" placeholder="Nombre del punto"><br><br><div id="coordForm"></div><br><textarea id="notes" placeholder="Notas"></textarea><br><br><button class="btn" onclick="addManual()">Agregar coordenada</button></section>
 <section class="card pad full"><div class="mapbar"><h2>Mapa</h2><div class="btns"><select id="base" onchange="drawMap()"><option value="osm">OSM con etiquetas</option><option value="carto">Claro con etiquetas</option><option value="topo">Topográfico</option><option value="sat">Satelital + etiquetas</option></select><input id="search" placeholder="Buscar" oninput="renderTable()"></div></div><div id="map" class="map" onmousedown="mapDown(event)" onmousemove="mapMove(event)" onmouseup="mapUp(event)" onmouseleave="mapUp(event)"></div></section>
 <section class="card pad full"><div class="export"><div><h2>Exportar coordenadas</h2><p class="muted">CSV compatible con Excel y QGIS.</p></div><button class="btn green" onclick="exportCsv(true)">Exportar filtrado CSV</button></div><h2>Tabla editable</h2><div class="tablewrap"><table><thead><tr><th>Nombre</th><th>Lat</th><th>Lon</th><th>Este</th><th>Norte</th><th>Zona</th><th>Hem</th><th>Notas</th><th></th></tr></thead><tbody id="tbody"></tbody></table></div></section></main></div></div></div>
-<script src="app.js?v=22"></script>
-<script src="app-enhance.js?v=22"></script>
-<script src="app-ui.js?v=12"></script>
-<script src="app-final-ui.js?v=10"></script>
-<script src="app-precision.js?v=9"></script>
-<script src="app-clean-header.js?v=6"></script>
-<script src="app-import-export.js?v=5"></script>
-<script src="app-layout-v115.js?v=3"></script>
-<script src="app-modern-v116.js?v=2"></script>
-<script src="app-design-v117.js?v=1"></script>
+<script src="app.js?v=23"></script>
+<script src="app-enhance.js?v=23"></script>
+<script src="app-ui.js?v=13"></script>
+<script src="app-final-ui.js?v=11"></script>
+<script src="app-precision.js?v=10"></script>
+<script src="app-clean-header.js?v=7"></script>
+<script src="app-import-export.js?v=6"></script>
+<script src="app-layout-v115.js?v=4"></script>
+<script src="app-modern-v116.js?v=3"></script>
+<script src="app-design-v117.js?v=2"></script>
+<script src="app-tabs-v118.js?v=1"></script>
 </body>
 </html>

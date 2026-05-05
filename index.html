@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Utilidades SIG Web</title>
-  <link rel="stylesheet" href="src/styles.css?v=100" />
+  <link rel="stylesheet" href="src/styles.css?v=101" />
 </head>
 <body>
   <div class="app">
@@ -98,6 +98,7 @@
               <button class="btn out" onclick="searchPlace(false)">🔎 Buscar</button>
               <button id="locBtn" class="btn out" onclick="useLocation()">📍 Mi ubicación</button>
               <button id="captureBtn" class="btn out" onclick="toggleCaptureMode()">📌 Capturar punto</button>
+              <button id="deselectPointBtn" class="btn out" onclick="deselectPoint()">Quitar selección</button>
               <select id="base" onchange="drawMap()">
                 <option value="osm">OSM con etiquetas</option>
                 <option value="carto">Claro con etiquetas</option>
@@ -111,7 +112,7 @@
                 <option value="latlon">Etiqueta: Lat/Lon</option>
                 <option value="none">Sin etiqueta</option>
               </select>
-              <input id="pointFilter" placeholder="Filtrar puntos..." oninput="renderTable()" />
+              <input id="pointFilter" placeholder="Filtrar puntos en tabla/mapa..." oninput="renderTable()" />
             </div>
           </div>
           <div id="map" class="map"></div>
@@ -140,6 +141,6 @@
       </main>
     </div>
   </div>
-  <script src="app.js?v=100"></script>
+  <script src="app.js?v=101"></script>
 </body>
 </html>

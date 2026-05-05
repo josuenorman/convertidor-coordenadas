@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Utilidades SIG Web v1.20</title>
-<link rel="stylesheet" href="src/styles.css?v=25" />
+<title>Utilidades SIG Web v1.21</title>
+<link rel="stylesheet" href="src/styles.css?v=26" />
 <style>
 body,.app,input,select,textarea,button,table{font-family:"Century Gothic","Aptos","Segoe UI",Arial,sans-serif!important}
 .map{cursor:grab!important}.map.grabbing{cursor:grabbing!important}
@@ -20,12 +20,10 @@ body,.app,input,select,textarea,button,table{font-family:"Century Gothic","Aptos
 <div class="app"><div class="wrap">
 
 <header class="hero hero-workspace">
-  <!-- Título centrado -->
   <div class="hero-title">
     <h1>Utilidades SIG Web <span class="byline">by Norman García</span></h1>
   </div>
 
-  <!-- Proyectos y acciones en una sola barra -->
   <div class="hero-projects">
     <div class="project-header-row">
       <strong>Proyectos</strong>
@@ -42,7 +40,6 @@ body,.app,input,select,textarea,button,table{font-family:"Century Gothic","Aptos
 <div class="grid workspace-grid">
 <main class="main">
 
-  <!-- Ingreso manual (módulo base, será reemplazado por app-modules-v119.js) -->
   <section class="card pad">
     <div class="tabs">
       <h2>Ingreso manual</h2>
@@ -57,7 +54,6 @@ body,.app,input,select,textarea,button,table{font-family:"Century Gothic","Aptos
     <button class="btn" onclick="addManual()">Agregar coordenada</button>
   </section>
 
-  <!-- Mapa -->
   <section class="card pad full">
     <div class="mapbar">
       <h2>Mapa</h2>
@@ -79,7 +75,6 @@ body,.app,input,select,textarea,button,table{font-family:"Century Gothic","Aptos
     </div>
   </section>
 
-  <!-- Tabla y exportación -->
   <section class="card pad full">
     <div class="export">
       <div>
@@ -112,31 +107,39 @@ body,.app,input,select,textarea,button,table{font-family:"Century Gothic","Aptos
 
 <script>
 function limpiarTablaCompleta(){
-  var total = (typeof pts !== 'undefined' ? pts.length : document.querySelectorAll('#tbody tr').length);
-  if(total === 0){ alert('La tabla ya está vacía.'); return; }
-  var ok = confirm('¿Eliminar todos los ' + total + ' registros de la tabla?\nEsta acción no se puede deshacer.');
+  if(typeof pr !== 'function' || typeof save !== 'function'){
+    alert('No se pudo acceder al proyecto activo. Recarga la página e intenta nuevamente.');
+    return;
+  }
+  const proyecto = pr();
+  const total = proyecto && Array.isArray(proyecto.points) ? proyecto.points.length : 0;
+  if(total === 0){
+    alert('La tabla ya está vacía.');
+    return;
+  }
+  const ok = confirm('¿Eliminar todos los ' + total + ' registros del proyecto actual?\nEsta acción no se puede deshacer.');
   if(!ok) return;
-  if(typeof pts !== 'undefined') pts.length = 0;
-  if(typeof points !== 'undefined') points.length = 0;
-  var tbody = document.getElementById('tbody');
-  if(tbody) tbody.innerHTML = '';
-  if(typeof clearMarkers === 'function') clearMarkers();
-  if(typeof drawMap === 'function') drawMap();
-  var msgEl = document.getElementById('msg');
-  if(msgEl) msgEl.textContent = 'Tabla limpiada.';
-  if(typeof saveProject === 'function') saveProject();
-  if(typeof renderTable === 'function') renderTable();
+  proyecto.points = [];
+  save();
+  if(typeof renderAll === 'function') renderAll();
+  else {
+    if(typeof renderTable === 'function') renderTable();
+    if(typeof drawMap === 'function') drawMap();
+  }
+  if(typeof msg === 'function') msg('Tabla limpiada correctamente.');
+  else {
+    const msgEl = document.getElementById('msg');
+    if(msgEl) msgEl.textContent = 'Tabla limpiada correctamente.';
+  }
 }
 </script>
-<script src="app.js?v=25"></script>
-<script src="app-enhance.js?v=25"></script>
-<script src="app-ui.js?v=15"></script>
-<script src="app-final-ui.js?v=13"></script>
-<script src="app-precision.js?v=12"></script>
-<script src="app-clean-header.js?v=9"></script>
-<script src="app-import-export.js?v=8"></script>
-<script src="app-layout-v115.js?v=6"></script>
-<script src="app-modules-v119.js?v=20"></script>
+<script src="app.js?v=26"></script>
+<script src="app-enhance.js?v=26"></script>
+<script src="app-ui.js?v=16"></script>
+<script src="app-final-ui.js?v=14"></script>
+<script src="app-precision.js?v=13"></script>
+<script src="app-clean-header.js?v=10"></script>
+<script src="app-import-export.js?v=9"></script>
+<script src="app-layout-v115.js?v=7"></script>
 </body>
 </html>
-

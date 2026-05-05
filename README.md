@@ -1,4 +1,4 @@
-# Utilidades SIG web
+# Utilidades SIG Web
 
 Aplicación web libre para apoyar tareas básicas de SIG, levantamiento de información territorial y organización de coordenadas.
 
@@ -21,16 +21,16 @@ La herramienta permite convertir, capturar, importar, plotear, editar y exportar
 
 ## Versión actual
 
-**v1.16**
+**v1.17**
 
 Cambios principales:
 
-- Rediseño visual tipo tablero SIG profesional.
-- Paleta de colores más sobria e institucional.
-- Mejor distribución de módulos para reducir espacios vacíos.
-- Módulo de carga/exportación SIG organizado en la parte superior.
-- Tabla editable y mapa como áreas principales de trabajo.
-- Encabezado más limpio y compacto.
+- Título centrado: **Utilidades SIG Web**.
+- Firma pequeña: **by Norman García**.
+- Módulos tipo chips: **Ingreso manual | CSV / Excel | Shapefile | Exportar**.
+- Paleta visual más profesional y agradable.
+- Mejor jerarquía visual para el flujo SIG.
+- Mapa y tabla se mantienen como áreas principales de trabajo.
 
 ## Privacidad
 
@@ -42,9 +42,9 @@ La aplicación no usa base de datos ni servidor propio. Los proyectos y puntos s
 https://josuenorman.github.io/convertidor-coordenadas/
 ```
 
-## Enlace público futuro
+## Enlace público deseado
 
-Si se renombra el repositorio a `utilidades-sig-web`, el enlace podrá quedar como:
+Al renombrar el repositorio a `utilidades-sig-web`, el enlace quedará como:
 
 ```text
 https://josuenorman.github.io/utilidades-sig-web/
@@ -52,4 +52,4 @@ https://josuenorman.github.io/utilidades-sig-web/
 
 ## Nota
 
-El nombre visible de la aplicación y la documentación es **Utilidades SIG web**. El repositorio aún puede conservar el nombre `convertidor-coordenadas` para no romper el enlace público existente, o renombrarse posteriormente si se desea compartir una URL nueva.
+La aplicación visible y la documentación ya usan el nombre **Utilidades SIG Web**. El cambio del enlace público requiere renombrar el repositorio en GitHub a `utilidades-sig-web`.

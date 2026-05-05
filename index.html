@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Utilidades SIG Web v1.21</title>
-<link rel="stylesheet" href="src/styles.css?v=26" />
+<title>Utilidades SIG Web v1.22</title>
+<link rel="stylesheet" href="src/styles.css?v=27" />
 <style>
 body,.app,input,select,textarea,button,table{font-family:"Century Gothic","Aptos","Segoe UI",Arial,sans-serif!important}
 .map{cursor:grab!important}.map.grabbing{cursor:grabbing!important}
@@ -29,7 +29,7 @@ body,.app,input,select,textarea,button,table{font-family:"Century Gothic","Aptos
       <strong>Proyectos</strong>
       <span id="msg" class="status hero-status">Listo para trabajar.</span>
       <div class="btns hero-actions" style="display:inline-flex;gap:6px;margin-left:10px;">
-        <button class="btn white" onclick="newProject()">Nuevo proyecto</button>
+        <button class="btn white" onclick="newProject()">Nuevo</button>
         <button class="btn green" onclick="exportCsv(false)">CSV</button>
       </div>
     </div>
@@ -117,7 +117,7 @@ function limpiarTablaCompleta(){
     alert('La tabla ya está vacía.');
     return;
   }
-  const ok = confirm('¿Eliminar todos los ' + total + ' registros del proyecto actual?\nEsta acción no se puede deshacer.');
+  const ok = confirm('¿Eliminar todos los ' + total + ' registros de la tabla?\nEsta acción no se puede deshacer.');
   if(!ok) return;
   proyecto.points = [];
   save();
@@ -133,13 +133,14 @@ function limpiarTablaCompleta(){
   }
 }
 </script>
-<script src="app.js?v=26"></script>
-<script src="app-enhance.js?v=26"></script>
-<script src="app-ui.js?v=16"></script>
-<script src="app-final-ui.js?v=14"></script>
-<script src="app-precision.js?v=13"></script>
-<script src="app-clean-header.js?v=10"></script>
-<script src="app-import-export.js?v=9"></script>
-<script src="app-layout-v115.js?v=7"></script>
+<script src="app.js?v=27"></script>
+<script src="app-enhance.js?v=27"></script>
+<script src="app-ui.js?v=17"></script>
+<script src="app-final-ui.js?v=15"></script>
+<script src="app-precision.js?v=14"></script>
+<script src="app-clean-header.js?v=11"></script>
+<script src="app-import-export.js?v=10"></script>
+<script src="app-layout-v115.js?v=8"></script>
+<script src="app-layout-v122.js?v=1"></script>
 </body>
 </html>

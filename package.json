@@ -1,9 +1,9 @@
 {
   "name": "utilidades-sig-web",
-  "version": "1.15.0",
+  "version": "1.16.0",
   "private": false,
   "type": "module",
-  "description": "Aplicación web libre para convertir coordenadas, importar tablas y shapefiles, plotear datos y exportar CSV/GeoJSON para QGIS.",
+  "description": "Aplicación web libre tipo tablero SIG para convertir coordenadas, importar tablas y shapefiles, plotear datos y exportar CSV/GeoJSON para QGIS.",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

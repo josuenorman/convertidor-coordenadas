@@ -1,12 +1,15 @@
 // Ajustes solicitados: ingreso manual horizontal arriba del mapa, mapa antes de tabla, sin bloque de novedades, firma en título y sin buscador redundante.
 (function(){
+  let arranging=false;
   function moveAndClean(){
+    if(arranging)return;
+    arranging=true;
     const h1=document.querySelector('.hero-title h1');
     if(h1 && !h1.querySelector('.byline')) h1.innerHTML='Utilidades SIG Web <span class="byline">by Norman García</span>';
     document.querySelectorAll('#versionBox,.version-box,.hero-title p').forEach(el=>el.remove());
 
     const main=document.querySelector('main.main');
-    if(!main)return;
+    if(!main){arranging=false;return;}
     const manual=[...main.querySelectorAll('section')].find(s=>(s.textContent||'').includes('Ingreso manual'));
     const mapSection=document.getElementById('map')?.closest('section');
     const tableSection=document.getElementById('tbody')?.closest('section');
@@ -17,8 +20,10 @@
     if(tableSection){tableSection.classList.add('table-under-map');tableSection.style.order='3';}
     if(gisModule){gisModule.style.order='4';const mh=gisModule.querySelector('h2');if(mh)mh.textContent='📦 Módulo SIG: importar, plotear y exportar';}
 
-    if(manual && mapSection) main.insertBefore(manual,mapSection);
-    if(mapSection && tableSection) main.insertBefore(tableSection,mapSection.nextSibling);
+    // Orden físico definitivo: Ingreso manual -> Mapa -> Tabla -> Módulo SIG.
+    if(manual) main.appendChild(manual);
+    if(mapSection) main.appendChild(mapSection);
+    if(tableSection) main.appendChild(tableSection);
     if(gisModule) main.appendChild(gisModule);
 
     const redundantSearch=document.getElementById('search');
@@ -28,6 +33,7 @@
       redundantSearch.setAttribute('tabindex','-1');
       redundantSearch.classList.add('hidden-map-filter-search');
     }
+    arranging=false;
   }
   function addStyles(){
     if(document.getElementById('final-request-style'))return;
@@ -43,6 +49,12 @@
     `;
     document.head.appendChild(s);
   }
-  function init(){addStyles();moveAndClean();setTimeout(moveAndClean,350);setTimeout(moveAndClean,900);setTimeout(moveAndClean,1600);setTimeout(moveAndClean,2600);}
+  function keepOrder(){
+    const main=document.querySelector('main.main');
+    if(!main||main.dataset.orderObserver==='on')return;
+    main.dataset.orderObserver='on';
+    new MutationObserver(()=>setTimeout(moveAndClean,0)).observe(main,{childList:true,subtree:false});
+  }
+  function init(){addStyles();moveAndClean();keepOrder();setTimeout(moveAndClean,350);setTimeout(moveAndClean,900);setTimeout(moveAndClean,1600);setTimeout(moveAndClean,2600);setInterval(moveAndClean,2500);}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();

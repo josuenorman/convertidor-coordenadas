@@ -1,8 +1,9 @@
 {
-  "name": "convertidor-coordenadas",
-  "version": "1.0.0",
+  "name": "utilidades-sig-web",
+  "version": "1.15.0",
   "private": false,
   "type": "module",
+  "description": "Aplicación web libre para convertir coordenadas, importar tablas y shapefiles, plotear datos y exportar CSV/GeoJSON para QGIS.",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
